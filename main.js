@@ -84,6 +84,18 @@ function mostraPergunta(){
 }
 
 function mostraAlternativas(){
+    if(atual>= perguntas.length){
+        mostraResultado();
+        return;
+    }
+
+    perguntaAtual = perguntas[atual];
+    caixaPerguntas.textContent = perguntaAtual.enunciado;
+    caixaAlternativas.textContent = " ";
+    mostraAlternativas();
+}
+    
+function mostraAlternativas(){
     for (const alternativa of perguntaAtual.alternativas) {
         const botaoAlternativas = document.createElement("button");
         botaoAlternativas.textContent = alternativa.texto;
