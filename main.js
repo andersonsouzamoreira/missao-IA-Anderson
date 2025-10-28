@@ -78,16 +78,19 @@ let perguntaAtual;
 let historiaFinal = " ";
 
 function mostraPergunta() {
-    perguntaAtual = perguntas[atual];
-    caixaPerguntas.textContent = perguntaAtual.enunciado;
-    mostraAlternativas();
+     if (atual >= perguntas.length) {
+        mostraResultado();
+        return;
 }
 
 function mostraAlternativas() {
-    if (atual >= perguntas.length) {
-        mostraResultado();
-        return;
+    for (const alternativa of perguntaAtual.alternativas) {
+        const botaoAlternativas = document.createElement("button");
+        botaoAlternativas.textContent = alternativa.texto;
+        botaoAlternativas.addEventListener('click', () => respostaSelecionada(alternativa));
+        caixaAlternativas.appendChild(botaoAlternativas);
     }
+}
 
     perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
